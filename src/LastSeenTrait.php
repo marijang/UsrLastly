@@ -17,9 +17,11 @@ trait LastSeenTrait {
         return app('UsrLastlyRepository')
             ->retrieve($this);
     }
+
     public function getLastSeenAttribute()
     {
         return app('UsrLastlyRepository')
             ->retrieve($this);
     }
+    
 } 

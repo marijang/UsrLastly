@@ -10,6 +10,7 @@ class Laravel implements User {
 
     public function getUser()
     {
+    	//return 'test';
         return (Auth::check()) ? Auth::user() : false;
     }
 }

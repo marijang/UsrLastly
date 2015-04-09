@@ -27,17 +27,17 @@ class Redis extends Repository
 
         // No need to store the full Carbon object
         $meta['date'] = $meta['date']->toDateTimeString();
-
         $this->storage
-            ->set('usr.' . $user->getKey() . '.lastSeen',
+            ->set('usr.' . $user->getKey(). '.lastSeen',
                 json_encode($meta, JSON_FORCE_OBJECT));
     }
 
     public function retrieve($user)
     {
-        $data = json_decode($this->storage->get('usr.' . $user->getKey() . '.lastSeen'));
 
-         // Make the stored date into Carbon object
+        $data = json_decode($this->storage->get('usr.' . $user->getKey() . '.lastSeen'));
+              
+        // Make the stored date into Carbon object
         if ($data)
         {
             $data->date = Carbon::createFromFormat('Y-m-d H:i:s', $data->date);
@@ -47,5 +47,6 @@ class Redis extends Repository
         $data = json_decode('{"date":""}');
         $data->date = Carbon::now();
         return $data;
+        
     }
 }

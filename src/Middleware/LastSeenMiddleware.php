@@ -15,9 +15,10 @@ class LastSeenMiddleware {
     public function handle($request, Closure $next)
     {
         // If we have a logged in user
-        $user = app('UsrLastlyUser')->getUser();
+        $user=  app('UsrLastlyUser')->getUser();
         if($user != false)
         {
+           
             // Store this page's visit
             app('UsrLastlyRepository')->store($user, $request);
         }
